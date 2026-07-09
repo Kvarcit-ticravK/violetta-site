@@ -569,6 +569,8 @@ function setLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n; if(dict[k]!==undefined) el.textContent=dict[k];});
   document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.dataset.i18nHtml; if(dict[k]!==undefined) el.innerHTML=dict[k];});
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+  const waEnc={uk:'%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D0%92%D1%96%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%BE%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D0%B7%20%D0%B2%D0%B0%D1%88%D0%BE%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D1%83.',ru:'%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%92%D0%B8%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%B0%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0.'};
+  document.querySelectorAll('.btn-wa').forEach(a=>{a.href='https://wa.me/380509066550?text='+(waEnc[lang]||waEnc.uk);});
   try{localStorage.setItem('violla-lang',lang)}catch(e){}
 }
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
