@@ -6,7 +6,7 @@
 <title>Віолетта Надич — консультант для сімей і підлітків · Лімасол</title>
 <meta name="description" content="Помогаю семьям и подросткам пройти адаптацию после переезда. Онлайн и очно в Лимасоле. Запись в Telegram.">
 
-<!-- Контент вписан: имя, контакты (TG t.me/+35799856038, WA 35799856038), тексты uk/ru, цены 50 EUR.
+<!-- Контент вписан: имя, контакты (TG t.me/violettanadych, WA 35799856038), тексты uk/ru, цены 50 EUR.
   Фото и сканы документов добавляются через content-overrides (режим ?edit или коммитом). -->
 
 <meta property="og:title" content="Віолетта Надич — допомога сімʼям і підліткам в еміграції">
@@ -348,7 +348,7 @@ body.edit-mode .doc-del{display:block}
         <button type="button" data-lang="uk" aria-pressed="true">УКР</button>
         <button type="button" data-lang="ru" aria-pressed="false">РУ</button>
       </div>
-      <a class="top-cta" href="https://t.me/+35799856038">
+      <a class="top-cta js-tg" href="https://t.me/violettanadych?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D0%92%D1%96%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%BE%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D0%B7%20%D0%B2%D0%B0%D1%88%D0%BE%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D1%83.">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 15.5 8.9 19.2c.37 0 .53-.16.73-.35l1.75-1.67 3.63 2.66c.67.37 1.14.18 1.32-.62l2.39-11.2c.21-.98-.35-1.36-1-1.12L4.6 11.9c-.96.37-.94.9-.17 1.14l3.6 1.12 8.36-5.27c.39-.26.75-.12.46.14l-6.77 6.47Z"/></svg>
         <span data-i18n="topCta">Написати</span>
       </a>
@@ -368,7 +368,7 @@ body.edit-mode .doc-del{display:block}
     <p class="lede" data-i18n="heroLede">Допомагаю сімʼям і підліткам пройти еміграцію: адаптація, стосунки з дитиною, повернення спокою в дім.</p>
     <p class="geo" data-i18n="heroGeo">Лімасол · очно та онлайн · українською і російською</p>
     <div class="cta-row">
-      <a class="btn" href="https://t.me/+35799856038">
+      <a class="btn js-tg" href="https://t.me/violettanadych?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D0%92%D1%96%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%BE%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D0%B7%20%D0%B2%D0%B0%D1%88%D0%BE%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D1%83.">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 15.5 8.9 19.2c.37 0 .53-.16.73-.35l1.75-1.67 3.63 2.66c.67.37 1.14.18 1.32-.62l2.39-11.2c.21-.98-.35-1.36-1-1.12L4.6 11.9c-.96.37-.94.9-.17 1.14l3.6 1.12 8.36-5.27c.39-.26.75-.12.46.14l-6.77 6.47Z"/></svg>
         <span data-i18n="heroCta">Написати в Telegram</span>
       </a>
@@ -464,7 +464,7 @@ body.edit-mode .doc-del{display:block}
     <h2 data-i18n="finTitle">Перший крок — просто написати</h2>
     <p data-i18n="finP">Не потрібно формулювати ідеально. Напишіть як є — далі розберемося разом.</p>
     <div class="cta-row">
-      <a class="btn" href="https://t.me/+35799856038">
+      <a class="btn js-tg" href="https://t.me/violettanadych?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D0%92%D1%96%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%BE%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D0%B7%20%D0%B2%D0%B0%D1%88%D0%BE%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D1%83.">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 15.5 8.9 19.2c.37 0 .53-.16.73-.35l1.75-1.67 3.63 2.66c.67.37 1.14.18 1.32-.62l2.39-11.2c.21-.98-.35-1.36-1-1.12L4.6 11.9c-.96.37-.94.9-.17 1.14l3.6 1.12 8.36-5.27c.39-.26.75-.12.46.14l-6.77 6.47Z"/></svg>
         <span data-i18n="finCta">Написати в Telegram</span>
       </a>
@@ -571,6 +571,8 @@ function setLang(lang){
   document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
   const waEnc={uk:'%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D0%92%D1%96%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%BE%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D0%B7%20%D0%B2%D0%B0%D1%88%D0%BE%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D1%83.',ru:'%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%92%D0%B8%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%B0%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0.'};
   document.querySelectorAll('.btn-wa').forEach(a=>{a.href='https://wa.me/35799856038?text='+(waEnc[lang]||waEnc.uk);});
+  const TG={uk:"https://t.me/violettanadych?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D0%92%D1%96%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%BE%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D0%B7%20%D0%B2%D0%B0%D1%88%D0%BE%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D1%83.",ru:"https://t.me/violettanadych?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%92%D0%B8%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%B0%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0."};
+  document.querySelectorAll('.js-tg').forEach(a=>a.href=TG[lang]||TG.uk);
   try{localStorage.setItem('violla-lang',lang)}catch(e){}
 }
 document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
