@@ -762,6 +762,17 @@ renderDocs();
 renderGallery();
 applyVideo();
 window.__ovReady=true;
+/* портрет открывается в лайтбоксе по клику (кроме режима ?edit) */
+(function(){
+  const pr=document.getElementById('portrait');
+  if(pr && !document.body.classList.contains('edit-mode')){
+    pr.style.cursor='zoom-in';
+    pr.addEventListener('click',()=>{
+      if(!OV.portrait) return;
+      lbImg.src=OV.portrait;lb.classList.add('open');document.body.style.overflow='hidden';
+    });
+  }
+})();
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
