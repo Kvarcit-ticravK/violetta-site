@@ -41,8 +41,9 @@ git add -A && git commit -m "..." && git push origin main   # Pages соберё
 - Telegram: `t.me/+35799856038` (по номеру; TODO — заменить на username кипрского аккаунта).
 
 ## Доделки
-- [ ] Галерея всех сертификатов (`OV.gallery`) + текст про мед-факультет + autocrop белых полей docs/ (PIL).
+- [x] Галерея сертификатов (`OV.gallery`, 12 шт., билингв. подписи) + текст мед-факультета + autocrop docs/ — задеплоено.
 - [ ] Видео-визитка: наполнить `OV.video` (секция-слот уже готова, скрыта до контента).
-- [ ] Telegram — username кипрского аккаунта вместо номера.
+- [x] Telegram — username `t.me/violettanadych` (с префиллом) — задеплоено.
+- [x] Instagram: instagram.com/violetta_nadych (профиль заведён 09.07; TODO — добавить ссылку на сайт в профиль). На сайте пока не указан.
 - [ ] Индексация: Google Search Console + Bing + Request Indexing.
 - [ ] Вычитка украинского текста (?edit).
