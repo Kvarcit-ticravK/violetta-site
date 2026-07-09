@@ -114,8 +114,8 @@ img{max-width:100%;display:block}
 .hero-grid{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
 /* «окно дома»: мягкий скруглённый квадрат с тёплой рамой */
 .portrait{
-  width:176px;height:196px;
-  border-radius:38px;
+  width:min(240px,64vw);height:min(268px,72vw);
+  border-radius:44px;
   background:linear-gradient(160deg,var(--honey) 0%,var(--clay) 100%);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;position:relative;
@@ -126,7 +126,7 @@ img{max-width:100%;display:block}
   transform:rotate(-2deg); /* лёгкий наклон, как фото на полке */
 }
 .portrait .initial{
-  font-family:'Literata',serif;font-size:64px;font-weight:600;color:#FFF3E0;
+  font-family:'Literata',serif;font-size:84px;font-weight:600;color:#FFF3E0;
   transform:rotate(2deg);
 }
 /* когда будет фото: заменить div.portrait на
