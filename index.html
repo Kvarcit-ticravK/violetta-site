@@ -270,6 +270,15 @@ img{max-width:100%;display:block}
   background:linear-gradient(transparent,rgba(53,41,31,.86));
   color:#FFF6E8;font-size:10.5px;line-height:1.35;padding:20px 8px 8px;
 }
+/* видео-визитка (слот) */
+.video-card{
+  position:relative;margin:0 auto;max-width:340px;aspect-ratio:9/16;
+  border-radius:20px;overflow:hidden;background:#000;
+  box-shadow:0 22px 50px -18px rgba(53,41,31,.5);
+}
+@media(min-width:640px){.video-card{max-width:680px;aspect-ratio:16/9}}
+.video-card iframe,.video-card video{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.video-note{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:14px}
 
 /* ================= форматы ================= */
 .formats{display:grid;grid-template-columns:1fr;gap:14px}
@@ -409,6 +418,14 @@ body.edit-mode .doc-del{display:block}
   </div>
 </section>
 
+<!-- ================= ВИДЕО-ВИЗИТКА (слот, скрыт до OV.video) ================= -->
+<section class="wrap reveal" id="videoSec" hidden>
+  <p class="kicker" data-i18n="videoKicker">Знайомство</p>
+  <h2 data-i18n="videoTitle">Кілька слів особисто</h2>
+  <div class="video-card" id="videoCard" style="margin-top:22px"></div>
+  <p class="video-note" data-i18n="videoNote">Пів хвилини — щоб почути голос і зрозуміти, чи відгукується.</p>
+</section>
+
 <!-- ================= КАК ПРОХОДИТ РАБОТА ================= -->
 <section class="wrap reveal">
   <p class="kicker" data-i18n="stepsKicker">Просто і по-людськи</p>
@@ -518,7 +535,7 @@ const I18N = {
     heroGeo:"Лімасол · очно та онлайн · українською і російською",
     heroCta:"Написати в Telegram",
     heroNote:"Відповідаю особисто, зазвичай протягом дня",
-    chatKicker:"Знайомі фрази?",
+    chatKicker:"Знайомі фрази?", videoKicker:"Знайомство", videoTitle:"Кілька слів особисто", videoNote:"Пів хвилини — щоб почути голос і зрозуміти, чи відгукується.",
     chatTitle:"З чим до мене приходять",
     q1:"«Дитина замкнулася після переїзду, цілими днями в телефоні»",
     q2:"«Кожна розмова з підлітком закінчується сваркою»",
@@ -555,7 +572,7 @@ const I18N = {
     heroGeo:"Лимасол · очно и онлайн · по-украински и по-русски",
     heroCta:"Написать в Telegram",
     heroNote:"Отвечаю лично, обычно в течение дня",
-    chatKicker:"Знакомые фразы?",
+    chatKicker:"Знакомые фразы?", videoKicker:"Знакомство", videoTitle:"Несколько слов лично", videoNote:"Полминуты — чтобы услышать голос и понять, откликается ли.",
     chatTitle:"С чем ко мне приходят",
     q1:"«Ребёнок замкнулся после переезда, целыми днями в телефоне»",
     q2:"«Каждый разговор с подростком заканчивается ссорой»",
@@ -663,6 +680,18 @@ function renderGallery(){
     grid.appendChild(fig);
   });
 }
+/* видео-визитка: активировать секцию по OV.video */
+function applyVideo(){
+  if(!OV.video) return;
+  const sec=document.getElementById('videoSec'), card=document.getElementById('videoCard');
+  if(!sec||!card) return;
+  if(OV.video.youtube){
+    card.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+OV.video.youtube+'" title="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
+  } else if(OV.video.mp4){
+    card.innerHTML='<video src="'+OV.video.mp4+'" controls playsinline preload="metadata"></video>';
+  } else { return; }
+  sec.hidden=false;
+}
 applyPortrait();
 
 /* ================= РЕЖИМ РЕДАКТИРОВАНИЯ (?edit) ================= */
@@ -728,6 +757,7 @@ if(EDIT){
 if(OV.prices){document.querySelectorAll('.price').forEach((el,i)=>{if(OV.prices['p'+i])el.innerHTML=OV.prices['p'+i]})}
 renderDocs();
 renderGallery();
+applyVideo();
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
