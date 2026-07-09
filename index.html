@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Віолетта Надич — консультант для сімей і підлітків · Лімасол</title>
+<meta name="description" content="Помогаю семьям и подросткам пройти адаптацию после переезда. Онлайн и очно в Лимасоле. Запись в Telegram.">
+
+<!-- ============================================================
+  ПЛЕЙСХОЛДЕРЫ — заполнить в словаре I18N внизу файла, в ОБОИХ языках:
+  {{ИМЯ}} {{ФОТО}} {{О_СЕБЕ_1..3}} {{ЗАПРОС_1..4}}
+  {{ЦЕНА_ИНД}} {{ЦЕНА_СЕМ}} {{TG_USERNAME}} {{WA_НОМЕР_БЕЗ_ПЛЮСА}} {{ДОМЕН}}
+  {{ДОКУМЕНТ_1..N}} — сканы дипломов/сертификатов в папку docs/ (jpg, читаемые названия)
+============================================================ -->
+
+<meta property="og:title" content="Віолетта Надич — допомога сімʼям і підліткам в еміграції">
+<meta property="og:description" content="Адаптация после переезда, отношения с подростком, семейные кризисы. Лимасол и онлайн.">
+<meta property="og:image" content="https://violetta-nadych.com/og-photo.jpg">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  /* ---- палитра «вечер дома»: лён, кофе, мёд, хвоя ---- */
+  --linen:#F8F3EA;        /* льняная бумага */
+  --linen-deep:#F1E9DB;
+  --ink:#35291F;          /* тёмный кофе */
+  --ink-soft:#6E6154;
+  --hair:#E3D9C8;         /* тонкие линии */
+  --honey:#B96A34;        /* мёд/терракота — главный акцент */
+  --honey-deep:#96501F;
+  --glow:#F3DDB9;         /* свет лампы */
+  --fir:#4A5D4E;          /* хвойный зелёный — второй акцент */
+  --sage:#EAF0E5;         /* светлый шалфей — подложки */
+  --clay:#C2765F;         /* тёплая глина — третий акцент */
+  --card:#FFFDF8;
+  --radius:22px;
+  --maxw:720px;
+  --ease:cubic-bezier(.22,.8,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
+body{
+  font-family:'Golos Text',system-ui,sans-serif;
+  background:var(--linen);color:var(--ink);
+  line-height:1.7;font-size:17px;
+  -webkit-font-smoothing:antialiased;
+}
+/* бумажное зерно */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:'Literata',Georgia,serif;line-height:1.24;font-weight:600;letter-spacing:-.01em}
+h2{font-size:clamp(26px,5vw,34px)}
+.kicker{
+  font-size:12px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--honey);font-weight:600;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.kicker::before{content:"";width:26px;height:1px;background:var(--honey)}
+section{padding:60px 0}
+a{color:var(--honey)}
+img{max-width:100%;display:block}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.on{opacity:1;transform:none}
+
+/* ================= шапка ================= */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(248,243,234,.85);
+  border-bottom:1px solid var(--hair);
+}
+.topbar-in{
+  max-width:var(--maxw);margin:0 auto;padding:12px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.brand{font-family:'Literata',serif;font-weight:600;font-size:16px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.top-right{display:flex;align-items:center;gap:10px}
+.lang{display:flex;border:1px solid var(--hair);border-radius:999px;overflow:hidden;background:var(--card)}
+.lang button{
+  border:0;background:transparent;cursor:pointer;
+  font:600 13px 'Golos Text',sans-serif;letter-spacing:.04em;
+  padding:7px 14px;color:var(--ink-soft);
+  transition:background .2s,color .2s;
+}
+.lang button[aria-pressed="true"]{background:var(--honey);color:#fff}
+.lang button:focus-visible{outline:2px solid var(--fir);outline-offset:-2px}
+.top-cta{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--ink);color:#FFF9EF;text-decoration:none;
+  font-weight:600;font-size:13px;padding:8px 16px;border-radius:999px;
+  transition:background .2s;white-space:nowrap;
+}
+.top-cta:hover{background:var(--honey-deep)}
+.top-cta svg{width:15px;height:15px}
+@media(max-width:480px){.top-cta span{display:none}.top-cta{padding:8px 11px}}
+
+/* ================= hero: окно с тёплым светом ================= */
+.hero{padding:64px 0 56px;position:relative;overflow:hidden}
+/* свечение лампы */
+.hero::before{
+  content:"";position:absolute;left:50%;top:-160px;transform:translateX(-50%);
+  width:900px;height:620px;pointer-events:none;
+  background:radial-gradient(ellipse at center,var(--glow) 0%,rgba(243,221,185,.35) 40%,transparent 70%);
+}
+.hero-grid{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+/* «окно дома»: мягкий скруглённый квадрат с тёплой рамой */
+.portrait{
+  width:176px;height:196px;
+  border-radius:38px;
+  background:linear-gradient(160deg,var(--honey) 0%,var(--clay) 100%);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;position:relative;
+  box-shadow:0 22px 50px -16px rgba(150,80,31,.45),
+             inset 0 0 0 6px var(--card),
+             inset 0 0 0 7px var(--hair);
+  margin-bottom:30px;
+  transform:rotate(-2deg); /* лёгкий наклон, как фото на полке */
+}
+.portrait .initial{
+  font-family:'Literata',serif;font-size:64px;font-weight:600;color:#FFF3E0;
+  transform:rotate(2deg);
+}
+/* когда будет фото: заменить div.portrait на
+   <div class="portrait"><img src="{{ФОТО}}" alt="{{ИМЯ}}" style="width:100%;height:100%;object-fit:cover;transform:rotate(2deg) scale(1.06)"></div> */
+.hero .hello{
+  font-family:'Literata',serif;font-style:italic;font-size:17px;color:var(--clay);
+  margin-bottom:14px;
+}
+.hero h1{font-size:clamp(32px,7.5vw,48px);margin-bottom:16px;max-width:620px}
+.hero h1 em{font-style:italic;color:var(--honey);font-weight:500}
+.hero .lede{font-size:19px;color:var(--ink-soft);max-width:540px;margin-bottom:10px}
+.hero .geo{font-size:15px;color:var(--fir);font-weight:500;margin-bottom:32px;display:flex;align-items:center;gap:8px;justify-content:center}
+.hero .geo::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--clay);box-shadow:0 0 0 4px rgba(194,118,95,.18)}
+
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--honey);color:#fff;text-decoration:none;
+  font-weight:600;font-size:17px;
+  padding:16px 30px;border-radius:999px;
+  transition:transform .2s var(--ease),box-shadow .2s,background .2s;
+  box-shadow:0 14px 30px -10px rgba(150,80,31,.55);
+}
+.btn:hover{background:var(--honey-deep);transform:translateY(-2px)}
+.btn:focus-visible{outline:3px solid var(--fir);outline-offset:3px}
+.btn svg{width:20px;height:20px;flex:none}
+.btn-note{font-size:14px;color:var(--ink-soft);margin-top:14px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--card);color:#1D7A54;text-decoration:none;
+  font-weight:600;font-size:17px;
+  padding:16px 26px;border-radius:999px;
+  border:1.5px solid #7BBF9E;
+  transition:transform .2s var(--ease),box-shadow .2s,background .2s;
+}
+.btn-wa:hover{background:#EDF7F1;transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(29,122,84,.4)}
+.btn-wa:focus-visible{outline:3px solid var(--honey);outline-offset:3px}
+.btn-wa svg{width:20px;height:20px;flex:none}
+.final .btn-wa{background:transparent;color:#D9EFE3;border-color:rgba(217,239,227,.5)}
+.final .btn-wa:hover{background:rgba(255,255,255,.1)}
+
+/* ================= чат ================= */
+.chat{
+  background:var(--card);border-radius:var(--radius);
+  padding:30px 24px;border:1px solid var(--hair);
+  box-shadow:0 26px 52px -30px rgba(53,41,31,.25);
+}
+.bubble{
+  background:var(--linen-deep);border-radius:18px 18px 18px 5px;
+  padding:14px 18px;max-width:86%;
+  font-size:16px;margin-bottom:13px;
+  opacity:0;transform:translateY(10px) scale(.98);
+  transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.chat.on .bubble{opacity:1;transform:none}
+.chat.on .bubble:nth-child(2){transition-delay:.15s}
+.chat.on .bubble:nth-child(3){transition-delay:.3s}
+.chat.on .bubble:nth-child(4){transition-delay:.45s}
+.bubble:nth-child(even){margin-left:auto;border-radius:18px 18px 5px 18px;background:var(--sage)}
+.chat .answer{margin-top:22px;padding-top:20px;border-top:1px solid var(--hair);font-size:16px;color:var(--ink-soft)}
+.chat .answer strong{color:var(--honey-deep)}
+
+/* ================= шаги ================= */
+.steps{display:flex;flex-direction:column;border:1px solid var(--hair);border-radius:var(--radius);overflow:hidden;background:var(--card)}
+.step{display:flex;gap:18px;align-items:flex-start;padding:24px;transition:background .25s}
+.step+.step{border-top:1px solid var(--hair)}
+.step:hover{background:var(--linen-deep)}
+.step .n{
+  font-family:'Literata',serif;font-weight:600;font-size:15px;
+  color:var(--honey-deep);border:1.5px solid var(--honey);
+  width:36px;height:36px;border-radius:12px 12px 4px 12px;flex:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.step h3{font-size:17px;margin-bottom:4px}
+.step p{font-size:15px;color:var(--ink-soft)}
+
+/* ================= обо мне ================= */
+.about-card{
+  background:var(--card);border:1px solid var(--hair);border-radius:var(--radius);
+  padding:28px 24px;position:relative;overflow:hidden;
+}
+.about-card::before{ /* тёплый свет из угла, как от лампы */
+  content:"";position:absolute;right:-70px;top:-70px;width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle,rgba(243,221,185,.8) 0%,transparent 70%);
+}
+.about-card p{margin-bottom:15px;max-width:600px;position:relative}
+.about-card p:last-child{margin-bottom:0}
+.placeholder{background:#FFF4DF;border:1px dashed var(--honey);border-radius:14px;padding:15px 17px;font-size:15px;color:#8a5a28}
+
+/* ================= документы и сертификаты ================= */
+.docs{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:580px){.docs{grid-template-columns:repeat(3,1fr)}}
+.doc{
+  background:var(--card);border:1px solid var(--hair);border-radius:16px;
+  overflow:hidden;cursor:pointer;position:relative;
+  transition:transform .25s var(--ease),box-shadow .25s;
+  aspect-ratio:3/4;
+}
+.doc:hover{transform:translateY(-3px);box-shadow:0 18px 36px -20px rgba(53,41,31,.35)}
+.doc img{width:100%;height:100%;object-fit:cover}
+.doc .doc-ph{ /* заглушка до загрузки сканов */
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(160deg,var(--linen-deep),var(--sage));
+  color:var(--ink-soft);font-size:13px;text-align:center;padding:14px;
+}
+.doc .doc-ph svg{width:34px;height:34px;color:var(--honey)}
+.doc figcaption{
+  position:absolute;left:0;right:0;bottom:0;
+  background:linear-gradient(transparent,rgba(53,41,31,.82));
+  color:#FFF6E8;font-size:12.5px;padding:26px 12px 10px;line-height:1.4;
+}
+/* лайтбокс: просмотр документа на весь экран */
+.lightbox{
+  position:fixed;inset:0;z-index:200;display:none;
+  background:rgba(35,30,24,.92);
+  align-items:center;justify-content:center;padding:24px;
+}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:88vh;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.lightbox .lb-close{
+  position:absolute;top:18px;right:18px;
+  width:44px;height:44px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(255,255,255,.14);color:#fff;font-size:22px;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+}
+.lightbox .lb-close:hover{background:rgba(255,255,255,.28)}
+.docs-note{font-size:14px;color:var(--ink-soft);margin-top:14px}
+
+/* ================= форматы ================= */
+.formats{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:580px){.formats{grid-template-columns:1fr 1fr}}
+.fmt{
+  background:var(--card);border-radius:var(--radius);padding:24px;
+  border:1px solid var(--hair);position:relative;overflow:hidden;
+  transition:transform .25s var(--ease),box-shadow .25s;
+}
+.fmt::after{ /* тонкая медовая полоска-порог снизу */
+  content:"";position:absolute;left:24px;right:24px;bottom:0;height:3px;
+  border-radius:3px 3px 0 0;background:linear-gradient(90deg,var(--honey),var(--clay));
+  opacity:0;transition:opacity .25s;
+}
+.fmt:hover{transform:translateY(-3px);box-shadow:0 20px 40px -22px rgba(53,41,31,.3)}
+.fmt:hover::after{opacity:1}
+.fmt h3{font-size:17px;margin-bottom:5px}
+.fmt .who{font-size:14px;color:var(--ink-soft);margin-bottom:16px}
+.fmt .price{font-family:'Literata',serif;font-size:24px;font-weight:600;color:var(--honey-deep)}
+.fmt .price span{font-size:14px;color:var(--ink-soft);font-family:'Golos Text',sans-serif;font-weight:400}
+
+/* ================= финал: дверь, в которую стучат ================= */
+.final{
+  position:relative;overflow:hidden;
+  background:linear-gradient(155deg,#4A5D4E 0%,#35443A 100%);
+  border-radius:32px;
+  color:#FFF9EF;text-align:center;
+  padding:64px 28px 52px;margin:16px auto 64px;
+  max-width:560px;
+}
+.final::before{ /* тёплый свет из-под двери */
+  content:"";position:absolute;left:50%;bottom:-120px;transform:translateX(-50%);
+  width:420px;height:240px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(243,221,185,.5) 0%,transparent 70%);
+}
+.final h2{color:#FFF9EF;margin-bottom:10px;position:relative}
+.final p{color:rgba(255,249,239,.82);margin-bottom:26px;font-size:16px;position:relative;max-width:400px;margin-left:auto;margin-right:auto}
+.final .btn{background:var(--glow);color:var(--ink);position:relative;box-shadow:0 14px 30px -10px rgba(0,0,0,.4)}
+.final .btn:hover{background:#fff}
+
+footer{padding:0 0 48px;font-size:13px;color:var(--ink-soft);text-align:center}
+
+/* ================= режим редактирования (?edit) ================= */
+body.edit-mode [contenteditable="true"]{outline:1.5px dashed var(--clay);outline-offset:3px;border-radius:6px;cursor:text;min-height:1em}
+body.edit-mode [contenteditable="true"]:focus{outline-style:solid;background:rgba(243,221,185,.25)}
+.edit-banner{
+  position:fixed;left:0;right:0;bottom:0;z-index:300;
+  background:var(--ink);color:#FFF6E8;font-size:14px;
+  padding:12px 16px;display:none;align-items:center;gap:12px;justify-content:center;flex-wrap:wrap;
+}
+body.edit-mode .edit-banner{display:flex}
+.edit-banner button{
+  border:0;border-radius:999px;padding:9px 18px;cursor:pointer;
+  font:600 14px 'Golos Text',sans-serif;
+  background:var(--honey);color:#fff;
+}
+.edit-banner button:hover{background:var(--honey-deep)}
+.add-btn{
+  display:none;border:2px dashed var(--honey);background:rgba(243,221,185,.2);
+  color:var(--honey-deep);border-radius:16px;cursor:pointer;
+  font:600 15px 'Golos Text',sans-serif;
+  align-items:center;justify-content:center;gap:8px;padding:14px;
+  transition:background .2s;
+}
+.add-btn:hover{background:rgba(243,221,185,.5)}
+body.edit-mode .add-btn{display:flex}
+.add-btn .plus{font-size:24px;line-height:1}
+.doc-add{aspect-ratio:3/4;flex-direction:column}
+.portrait-add{
+  position:absolute;right:-8px;bottom:-8px;width:44px;height:44px;border-radius:50%;
+  padding:0;aspect-ratio:auto;z-index:5;background:var(--honey);border:3px solid var(--card);color:#fff;
+}
+body.edit-mode .portrait-add{display:flex}
+.portrait-add:hover{background:var(--honey-deep)}
+.doc-del{
+  position:absolute;top:8px;right:8px;z-index:4;display:none;
+  width:30px;height:30px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(53,41,31,.75);color:#fff;font-size:16px;line-height:1;
+}
+body.edit-mode .doc-del{display:block}
+</style>
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<nav class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#" data-i18n="brand">Віолетта Надич</a>
+    <div class="top-right">
+      <div class="lang" role="group" aria-label="Мова / Язык">
+        <button type="button" data-lang="uk" aria-pressed="true">УКР</button>
+        <button type="button" data-lang="ru" aria-pressed="false">РУ</button>
+      </div>
+      <a class="top-cta" href="https://t.me/{{TG_USERNAME}}">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 15.5 8.9 19.2c.37 0 .53-.16.73-.35l1.75-1.67 3.63 2.66c.67.37 1.14.18 1.32-.62l2.39-11.2c.21-.98-.35-1.36-1-1.12L4.6 11.9c-.96.37-.94.9-.17 1.14l3.6 1.12 8.36-5.27c.39-.26.75-.12.46.14l-6.77 6.47Z"/></svg>
+        <span data-i18n="topCta">Написати</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="portrait" id="portrait" style="position:relative">
+      <span class="initial" aria-hidden="true">В</span>
+      <button class="add-btn portrait-add" id="portraitAdd" title="Загрузить фото" aria-label="Загрузить фото"><span class="plus">+</span></button>
+    </div>
+    <p class="hello" data-i18n="hello">Заходьте — тут вам раді</p>
+    <h1 data-i18n-html="heroTitle">Коли переїзд сколихнув сімʼю — <em>це можна виправити</em></h1>
+    <p class="lede" data-i18n="heroLede">Допомагаю сімʼям і підліткам пройти еміграцію: адаптація, стосунки з дитиною, повернення спокою в дім.</p>
+    <p class="geo" data-i18n="heroGeo">Лімасол · очно та онлайн · українською і російською</p>
+    <div class="cta-row">
+      <a class="btn" href="https://t.me/{{TG_USERNAME}}">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 15.5 8.9 19.2c.37 0 .53-.16.73-.35l1.75-1.67 3.63 2.66c.67.37 1.14.18 1.32-.62l2.39-11.2c.21-.98-.35-1.36-1-1.12L4.6 11.9c-.96.37-.94.9-.17 1.14l3.6 1.12 8.36-5.27c.39-.26.75-.12.46.14l-6.77 6.47Z"/></svg>
+        <span data-i18n="heroCta">Написати в Telegram</span>
+      </a>
+      <a class="btn-wa" href="https://wa.me/{{WA_НОМЕР_БЕЗ_ПЛЮСА}}">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5s0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 3 4.6 4.2.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4Z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+    <p class="btn-note" data-i18n="heroNote">Відповідаю особисто, зазвичай протягом дня</p>
+  </div>
+</header>
+
+<!-- ================= С ЧЕМ ПРИХОДЯТ ================= -->
+<section class="wrap reveal">
+  <p class="kicker" data-i18n="chatKicker">Знайомі фрази?</p>
+  <h2 data-i18n="chatTitle">З чим до мене приходять</h2>
+  <div class="chat" id="chatBlock" style="margin-top:22px">
+    <div class="bubble" data-i18n="q1">«{{ЗАПИТ_1}}»</div>
+    <div class="bubble" data-i18n="q2">«{{ЗАПИТ_2}}»</div>
+    <div class="bubble" data-i18n="q3">«{{ЗАПИТ_3}}»</div>
+    <div class="bubble" data-i18n="q4">«{{ЗАПИТ_4}}»</div>
+    <div class="answer" data-i18n-html="chatAnswer">Якщо ви впізнали свою ситуацію — <strong>це можна виправити</strong>.</div>
+  </div>
+</section>
+
+<!-- ================= КАК ПРОХОДИТ РАБОТА ================= -->
+<section class="wrap reveal">
+  <p class="kicker" data-i18n="stepsKicker">Просто і по-людськи</p>
+  <h2 data-i18n="stepsTitle">Як проходить робота</h2>
+  <div class="steps" style="margin-top:22px">
+    <div class="step"><div class="n">1</div><div><h3 data-i18n="s1t"></h3><p data-i18n="s1p"></p></div></div>
+    <div class="step"><div class="n">2</div><div><h3 data-i18n="s2t"></h3><p data-i18n="s2p"></p></div></div>
+    <div class="step"><div class="n">3</div><div><h3 data-i18n="s3t"></h3><p data-i18n="s3p"></p></div></div>
+  </div>
+</section>
+
+<!-- ================= ОБО МНЕ ================= -->
+<section class="wrap reveal">
+  <p class="kicker" data-i18n="aboutKicker">Хто я</p>
+  <h2 data-i18n="aboutTitle">Про мене</h2>
+  <div class="about-card" style="margin-top:22px">
+    <p class="placeholder" data-i18n="about1">{{ПРО_СЕБЕ_1}}</p>
+    <p class="placeholder" data-i18n="about2">{{ПРО_СЕБЕ_2}}</p>
+    <p class="placeholder" data-i18n="about3">{{ПРО_СЕБЕ_3}}</p>
+  </div>
+</section>
+
+<!-- ================= ДОКУМЕНТЫ И СЕРТИФИКАТЫ ================= -->
+<section class="wrap reveal">
+  <p class="kicker" data-i18n="docsKicker">Освіта</p>
+  <h2 data-i18n="docsTitle">Дипломи та сертифікати</h2>
+  <div class="docs" id="docsGrid" style="margin-top:22px">
+    <!-- когда будут сканы: заменить каждую figure на
+         <figure class="doc" data-full="docs/diploma.jpg">
+           <img src="docs/diploma-thumb.jpg" alt="Диплом ...">
+           <figcaption>Диплом психолога, {{ВУЗ}}, {{ГОД}}</figcaption>
+         </figure> -->
+    <figure class="doc">
+      <div class="doc-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9.5 12h5M9.5 15.5h5"/></svg><span data-i18n="doc1">{{ДОКУМЕНТ_1: Диплом психолога}}</span></div>
+    </figure>
+    <figure class="doc">
+      <div class="doc-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9.5 12h5M9.5 15.5h5"/></svg><span data-i18n="doc2">{{ДОКУМЕНТ_2: Сертифікат}}</span></div>
+    </figure>
+    <figure class="doc">
+      <div class="doc-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/><path d="M9.5 12h5M9.5 15.5h5"/></svg><span data-i18n="doc3">{{ДОКУМЕНТ_3: Сертифікат}}</span></div>
+    </figure>
+    <button class="add-btn doc-add" id="docAdd"><span class="plus">+</span><span>Добавить документ</span></button>
+  </div>
+  <p class="docs-note" data-i18n="docsNote">Натисніть на документ, щоб роздивитися. Оригінали можу показати на першій зустрічі.</p>
+</section>
+
+<!-- лайтбокс для документов -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Документ">
+  <button class="lb-close" id="lbClose" aria-label="Закрити">&times;</button>
+  <img id="lbImg" src="" alt="">
+</div>
+
+<!-- ================= ФОРМАТЫ ================= -->
+<section class="wrap reveal">
+  <p class="kicker" data-i18n="fmtKicker">Формати</p>
+  <h2 data-i18n="fmtTitle">Зустрічі та ціни</h2>
+  <div class="formats" style="margin-top:22px">
+    <div class="fmt"><h3 data-i18n="f1t"></h3><p class="who" data-i18n="f1w"></p><p class="price">{{ЦЕНА_ИНД: 50 €}} <span data-i18n="per50"></span></p></div>
+    <div class="fmt"><h3 data-i18n="f2t"></h3><p class="who" data-i18n="f2w"></p><p class="price">{{ЦЕНА_ИНД: 50 €}} <span data-i18n="per50"></span></p></div>
+    <div class="fmt"><h3 data-i18n="f3t"></h3><p class="who" data-i18n="f3w"></p><p class="price">{{ЦЕНА_СЕМ: __ €}} <span data-i18n="perX"></span></p></div>
+    <div class="fmt"><h3 data-i18n="f4t"></h3><p class="who" data-i18n="f4w"></p><p class="price">{{ЦЕНА_ИНД: 50 €}} <span data-i18n="per50"></span></p></div>
+  </div>
+</section>
+
+<!-- ================= ФИНАЛ ================= -->
+<section class="wrap">
+  <div class="final reveal">
+    <h2 data-i18n="finTitle">Перший крок — просто написати</h2>
+    <p data-i18n="finP">Не потрібно формулювати ідеально. Напишіть як є — далі розберемося разом.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://t.me/{{TG_USERNAME}}">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 15.5 8.9 19.2c.37 0 .53-.16.73-.35l1.75-1.67 3.63 2.66c.67.37 1.14.18 1.32-.62l2.39-11.2c.21-.98-.35-1.36-1-1.12L4.6 11.9c-.96.37-.94.9-.17 1.14l3.6 1.12 8.36-5.27c.39-.26.75-.12.46.14l-6.77 6.47Z"/></svg>
+        <span data-i18n="finCta">Написати в Telegram</span>
+      </a>
+      <a class="btn-wa" href="https://wa.me/{{WA_НОМЕР_БЕЗ_ПЛЮСА}}">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.3-.7.8-.8 1-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-3c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5s0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 3 4.6 4.2.6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4Z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="edit-banner">
+  <span>✏️ Режим редактирования: кликайте по текстам, «+» — фото и документы</span>
+  <button id="exportBtn">💾 Скачать обновлённый сайт</button>
+</div>
+
+<footer class="wrap" data-i18n="footer">Віолетта Надич · Лімасол, Кіпр</footer>
+
+<script id="content-overrides" type="application/json">{}</script>
+<script>
+/* ================= I18N — украинский первый ================= */
+const I18N = {
+  uk: {
+    brand:"Віолетта Надич",
+    topCta:"Написати",
+    hello:"Заходьте — тут вам раді",
+    heroTitle:"Коли переїзд сколихнув сімʼю — <em>це можна виправити</em>",
+    heroLede:"Допомагаю сімʼям і підліткам пройти еміграцію: адаптація, стосунки з дитиною, повернення спокою в дім.",
+    heroGeo:"Лімасол · очно та онлайн · українською і російською",
+    heroCta:"Написати в Telegram",
+    heroNote:"Відповідаю особисто, зазвичай протягом дня",
+    chatKicker:"Знайомі фрази?",
+    chatTitle:"З чим до мене приходять",
+    q1:"«{{ЗАПИТ_1: Дитина замкнулася після переїзду, цілими днями в телефоні}}»",
+    q2:"«{{ЗАПИТ_2: Кожна розмова з підлітком закінчується сваркою}}»",
+    q3:"«{{ЗАПИТ_3: Донька відмовляється ходити до нової школи}}»",
+    q4:"«{{ЗАПИТ_4: Ми з чоловіком перестали чути одне одного після переїзду}}»",
+    chatAnswer:"Якщо ви впізнали свою ситуацію — <strong>це можна виправити</strong>. Переїзд струшує всю сімʼю, і те, що відбувається з вами, — нормальна реакція на ненормальне навантаження.",
+    stepsKicker:"Просто і по-людськи",
+    stepsTitle:"Як проходить робота",
+    s1t:"Ви пишете мені в Telegram", s1p:"Коротко описуєте ситуацію своїми словами. Я відповідаю особисто і пропоную час.",
+    s2t:"Перша зустріч — знайомство", s2p:"Розбираємо ситуацію, я чесно кажу, чим можу допомогти і який формат підійде: робота з підлітком, з батьками чи з усією сімʼєю.",
+    s3t:"Регулярні зустрічі", s3p:"Очно в Лімасолі або онлайн. Зазвичай зміни помітні вже через кілька зустрічей — і вам, і дитині.",
+    aboutKicker:"Хто я", aboutTitle:"Про мене",
+    about1:"{{ПРО_СЕБЕ_1}}", about2:"{{ПРО_СЕБЕ_2}}", about3:"{{ПРО_СЕБЕ_3}}",
+    docsKicker:"Освіта", docsTitle:"Дипломи та сертифікати",
+    doc1:"{{ДОКУМЕНТ_1: Диплом психолога}}", doc2:"{{ДОКУМЕНТ_2: Сертифікат}}", doc3:"{{ДОКУМЕНТ_3: Сертифікат}}",
+    docsNote:"Натисніть на документ, щоб роздивитися. Оригінали можу показати на першій зустрічі.",
+    fmtKicker:"Формати", fmtTitle:"Зустрічі та ціни",
+    f1t:"Зустріч із підлітком", f1w:"Індивідуально, за згодою батьків",
+    f2t:"Консультація для батьків", f2w:"Один або обоє батьків",
+    f3t:"Сімейна зустріч", f3w:"Батьки і дитина разом",
+    f4t:"Онлайн-зустріч", f4w:"З будь-якої точки, відеозвʼязок",
+    per50:"/ 50 хвилин", perX:"/ __ хвилин",
+    finTitle:"Перший крок — просто написати",
+    finP:"Не потрібно формулювати ідеально. Напишіть як є — далі розберемося разом.",
+    finCta:"Написати в Telegram",
+    footer:"Віолетта Надич · Лімасол, Кіпр"
+  },
+  ru: {
+    brand:"Виолетта Надич",
+    topCta:"Написать",
+    hello:"Заходите — здесь вам рады",
+    heroTitle:"Когда переезд встряхнул семью — <em>это решаемо</em>",
+    heroLede:"Помогаю семьям и подросткам пройти эмиграцию: адаптация, отношения с ребёнком, возвращение спокойствия в дом.",
+    heroGeo:"Лимасол · очно и онлайн · по-украински и по-русски",
+    heroCta:"Написать в Telegram",
+    heroNote:"Отвечаю лично, обычно в течение дня",
+    chatKicker:"Знакомые фразы?",
+    chatTitle:"С чем ко мне приходят",
+    q1:"«{{ЗАПРОС_1: Ребёнок замкнулся после переезда, целыми днями в телефоне}}»",
+    q2:"«{{ЗАПРОС_2: Каждый разговор с подростком заканчивается ссорой}}»",
+    q3:"«{{ЗАПРОС_3: Дочь отказывается ходить в новую школу}}»",
+    q4:"«{{ЗАПРОС_4: Мы с мужем перестали слышать друг друга после переезда}}»",
+    chatAnswer:"Если вы узнали свою ситуацию — <strong>это решаемо</strong>. Переезд встряхивает всю семью, и то, что происходит с вами, — нормальная реакция на ненормальную нагрузку.",
+    stepsKicker:"Просто и по-человечески",
+    stepsTitle:"Как проходит работа",
+    s1t:"Вы пишете мне в Telegram", s1p:"Коротко описываете ситуацию своими словами. Я отвечаю лично и предлагаю время.",
+    s2t:"Первая встреча — знакомство", s2p:"Разбираем ситуацию, я честно говорю, чем могу помочь и какой формат подойдёт: работа с подростком, с родителями или со всей семьёй.",
+    s3t:"Регулярные встречи", s3p:"Очно в Лимасоле или онлайн. Обычно изменения заметны через несколько встреч — и вам, и ребёнку.",
+    aboutKicker:"Кто я", aboutTitle:"Обо мне",
+    about1:"{{О_СЕБЕ_1}}", about2:"{{О_СЕБЕ_2}}", about3:"{{О_СЕБЕ_3}}",
+    docsKicker:"Образование", docsTitle:"Дипломы и сертификаты",
+    doc1:"{{ДОКУМЕНТ_1: Диплом психолога}}", doc2:"{{ДОКУМЕНТ_2: Сертификат}}", doc3:"{{ДОКУМЕНТ_3: Сертификат}}",
+    docsNote:"Нажмите на документ, чтобы рассмотреть. Оригиналы могу показать на первой встрече.",
+    fmtKicker:"Форматы", fmtTitle:"Встречи и цены",
+    f1t:"Встреча с подростком", f1w:"Индивидуально, с согласия родителей",
+    f2t:"Консультация для родителей", f2w:"Один или оба родителя",
+    f3t:"Семейная встреча", f3w:"Родители и ребёнок вместе",
+    f4t:"Онлайн-встреча", f4w:"Из любой точки, видеосвязь",
+    per50:"/ 50 минут", perX:"/ __ минут",
+    finTitle:"Первый шаг — просто написать",
+    finP:"Не нужно формулировать идеально. Напишите как есть — дальше разберёмся вместе.",
+    finCta:"Написать в Telegram",
+    footer:"Виолетта Надич · Лимасол, Кипр"
+  }
+};
+
+function setLang(lang){
+  const dict=I18N[lang]; if(!dict) return;
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n; if(dict[k]!==undefined) el.textContent=dict[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.dataset.i18nHtml; if(dict[k]!==undefined) el.innerHTML=dict[k];});
+  document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+  try{localStorage.setItem('violla-lang',lang)}catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+let start='uk';
+try{start=localStorage.getItem('violla-lang')||((navigator.language||'').startsWith('ru')?'ru':'uk')}catch(e){}
+setLang(start);
+
+/* лайтбокс документов */
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg');
+document.querySelectorAll('.doc').forEach(d=>d.addEventListener('click',()=>{
+  const full=d.dataset.full||d.querySelector('img')?.src;
+  if(!full) return; /* заглушки без сканов не открываются */
+  lbImg.src=full;lb.classList.add('open');document.body.style.overflow='hidden';
+}));
+function lbHide(){lb.classList.remove('open');lbImg.src='';document.body.style.overflow=''}
+document.getElementById('lbClose').addEventListener('click',lbHide);
+lb.addEventListener('click',e=>{if(e.target===lb)lbHide()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lbHide()});
+
+/* ================= OVERRIDES: контент поверх шаблона ================= */
+let OV={};
+try{OV=JSON.parse(document.getElementById('content-overrides').textContent||'{}')}catch(e){OV={}}
+OV.i18n=OV.i18n||{}; OV.docs=OV.docs||null; OV.portrait=OV.portrait||null;
+/* влить сохранённые правки в словари */
+for(const L of ['uk','ru']){ if(OV.i18n[L]) Object.assign(I18N[L],OV.i18n[L]); }
+/* применить фото */
+function applyPortrait(){
+  if(!OV.portrait) return;
+  const pr=document.getElementById('portrait');
+  pr.querySelector('.initial')?.remove();
+  let im=pr.querySelector('img.pimg');
+  if(!im){im=document.createElement('img');im.className='pimg';im.alt='';im.style.cssText='width:100%;height:100%;object-fit:cover;transform:rotate(2deg) scale(1.06)';pr.prepend(im)}
+  im.src=OV.portrait;
+}
+/* отрисовать документы из OVERRIDES */
+function renderDocs(){
+  if(!OV.docs) return;
+  const grid=document.getElementById('docsGrid');
+  grid.querySelectorAll('figure.doc').forEach(f=>f.remove());
+  const addBtn=document.getElementById('docAdd');
+  OV.docs.forEach((d,i)=>{
+    const f=document.createElement('figure');f.className='doc';f.dataset.full=d.src;
+    f.innerHTML='<img src="'+d.src+'" alt=""><figcaption>'+(d.caption||'')+'</figcaption>'+
+                '<button class="doc-del" title="Удалить" aria-label="Удалить">×</button>';
+    f.querySelector('.doc-del').addEventListener('click',ev=>{ev.stopPropagation();if(confirm('Удалить документ?')){OV.docs.splice(i,1);renderDocs()}});
+    f.addEventListener('click',()=>{lbImg.src=d.src;lb.classList.add('open');document.body.style.overflow='hidden'});
+    const cap=f.querySelector('figcaption');
+    if(document.body.classList.contains('edit-mode')){
+      cap.contentEditable='true';
+      cap.addEventListener('input',()=>{OV.docs[i].caption=cap.textContent});
+      cap.addEventListener('click',ev=>ev.stopPropagation());
+    }
+    grid.insertBefore(f,addBtn);
+  });
+}
+applyPortrait();
+
+/* ================= РЕЖИМ РЕДАКТИРОВАНИЯ (?edit) ================= */
+const EDIT=new URLSearchParams(location.search).has('edit');
+function fileToDataURL(file,maxDim,cb){
+  const img=new Image();
+  img.onload=()=>{
+    let w=img.width,h=img.height;
+    if(Math.max(w,h)>maxDim){const k=maxDim/Math.max(w,h);w=Math.round(w*k);h=Math.round(h*k)}
+    const c=document.createElement('canvas');c.width=w;c.height=h;
+    c.getContext('2d').drawImage(img,0,0,w,h);
+    cb(c.toDataURL('image/jpeg',.82));
+  };
+  img.src=URL.createObjectURL(file);
+}
+function pickImage(maxDim,cb){
+  const inp=document.createElement('input');inp.type='file';inp.accept='image/*';
+  inp.onchange=()=>{if(inp.files[0])fileToDataURL(inp.files[0],maxDim,cb)};
+  inp.click();
+}
+if(EDIT){
+  document.body.classList.add('edit-mode');
+  /* все словарные тексты редактируемы */
+  document.querySelectorAll('[data-i18n],[data-i18n-html]').forEach(el=>{
+    el.contentEditable='true';
+    el.addEventListener('input',()=>{
+      const L=document.documentElement.lang;
+      OV.i18n[L]=OV.i18n[L]||{};
+      if(el.dataset.i18n){OV.i18n[L][el.dataset.i18n]=el.textContent;I18N[L][el.dataset.i18n]=el.textContent}
+      else{OV.i18n[L][el.dataset.i18nHtml]=el.innerHTML;I18N[L][el.dataset.i18nHtml]=el.innerHTML}
+    });
+    if(el.tagName==='A'){el.addEventListener('click',ev=>ev.preventDefault())}
+  });
+  /* цены редактируемы */
+  document.querySelectorAll('.price').forEach((el,i)=>{
+    el.contentEditable='true';
+    OV.prices=OV.prices||{};
+    el.addEventListener('input',()=>{OV.prices['p'+i]=el.innerHTML});
+  });
+  /* фото */
+  document.getElementById('portraitAdd').addEventListener('click',()=>{
+    pickImage(700,url=>{OV.portrait=url;applyPortrait()});
+  });
+  /* документы */
+  document.getElementById('docAdd').addEventListener('click',()=>{
+    pickImage(1400,url=>{
+      const caption=prompt('Подпись к документу (что это, кто выдал, год):','')||'';
+      OV.docs=OV.docs||[];OV.docs.push({src:url,caption});renderDocs();
+    });
+  });
+  /* экспорт */
+  document.getElementById('exportBtn').addEventListener('click',()=>{
+    document.getElementById('content-overrides').textContent=JSON.stringify(OV);
+    let html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+    /* убрать служебное состояние редактора из выгрузки */
+    html=html.replace(/ contenteditable="true"/g,'').replace('class="edit-mode"','class=""').replace(' class="" ',' ');
+    const blob=new Blob([html],{type:'text/html'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='index.html';a.click();
+    alert('Файл index.html скачан. Отправьте его Сергею для публикации 🙂');
+  });
+}
+/* применить сохранённые цены */
+if(OV.prices){document.querySelectorAll('.price').forEach((el,i)=>{if(OV.prices['p'+i])el.innerHTML=OV.prices['p'+i]})}
+renderDocs();
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const chat=document.getElementById('chatBlock');
+if(chat){const io2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){chat.classList.add('on');io2.unobserve(chat)}}),{threshold:.25});io2.observe(chat)}
+</script>
+</body>
+</html>
