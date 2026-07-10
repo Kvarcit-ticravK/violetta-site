@@ -120,7 +120,7 @@ img{max-width:100%;display:block}
 .hero-grid{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
 /* «окно дома»: мягкий скруглённый квадрат с тёплой рамой */
 .portrait{
-  width:min(240px,64vw);height:min(320px,85vw);
+  width:min(320px,78vw);aspect-ratio:3/4;
   border-radius:44px;
   background:linear-gradient(160deg,var(--honey) 0%,var(--clay) 100%);
   display:flex;align-items:center;justify-content:center;
@@ -129,7 +129,6 @@ img{max-width:100%;display:block}
              inset 0 0 0 6px var(--card),
              inset 0 0 0 7px var(--hair);
   margin-bottom:30px;
-  transform:rotate(-2deg); /* лёгкий наклон, как фото на полке */
 }
 .portrait .initial{
   font-family:'Literata',serif;font-size:84px;font-weight:600;color:#FFF3E0;
@@ -222,7 +221,7 @@ img{max-width:100%;display:block}
 .about-card p:last-child{margin-bottom:0}
 /* фото перед разделом "Про мене" */
 .about-photo{
-  margin:0 auto;width:min(240px,64vw);
+  margin:0 auto;width:min(320px,78vw);
   border-radius:var(--radius);overflow:hidden;border:1px solid var(--hair);
   box-shadow:0 24px 48px -28px rgba(53,41,31,.35);cursor:zoom-in;
 }
@@ -670,7 +669,7 @@ function applyPortrait(){
   const pr=document.getElementById('portrait');
   pr.querySelector('.initial')?.remove();
   let im=pr.querySelector('img.pimg');
-  if(!im){im=document.createElement('img');im.className='pimg';im.alt='';im.style.cssText='width:100%;height:100%;object-fit:cover;transform:rotate(2deg)';pr.prepend(im)}
+  if(!im){im=document.createElement('img');im.className='pimg';im.alt='';im.style.cssText='width:100%;height:100%;object-fit:cover';pr.prepend(im)}
   im.src=OV.portrait;
 }
 /* отрисовать документы из OVERRIDES */
