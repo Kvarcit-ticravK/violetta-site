@@ -426,6 +426,13 @@ body.edit-mode .doc-del{display:block}
   </div>
 </header>
 
+<!-- ================= ФОТО ПЕРЕД "С ЧЕМ ПРИХОДЯТ" ================= -->
+<section class="wrap reveal" id="chatPhotoSec">
+  <figure class="about-photo">
+    <img src="docs/chat-photo.jpg" alt="Віолетта Надич" loading="lazy">
+  </figure>
+</section>
+
 <!-- ================= С ЧЕМ ПРИХОДЯТ ================= -->
 <section class="wrap reveal">
   <p class="kicker" data-i18n="chatKicker">Знайомі фрази?</p>
@@ -805,11 +812,12 @@ window.__ovReady=true;
   }
 })();
 
-/* фото раздела "Про мене" открывается в лайтбоксе по клику */
+/* фото-секции (.about-photo) открываются в лайтбоксе по клику */
 (function(){
-  const fig=document.querySelector('#aboutPhotoSec .about-photo');
-  const img=fig&&fig.querySelector('img');
-  if(fig&&img){fig.addEventListener('click',()=>{lbImg.src=img.src;lb.classList.add('open');document.body.style.overflow='hidden';});}
+  document.querySelectorAll('.about-photo').forEach(fig=>{
+    const img=fig.querySelector('img');
+    if(img){fig.addEventListener('click',()=>{lbImg.src=img.src;lb.classList.add('open');document.body.style.overflow='hidden';});}
+  });
 })();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
