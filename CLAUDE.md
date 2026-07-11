@@ -3,31 +3,47 @@
 Лендинг гештальт-терапевта Виолетты Надич. Живой сайт: https://violetta-nadych.com
 (GitHub Pages, репо Kvarcit-ticravK/violetta-site, деплой = push в `main`).
 
+## Статус (11.07.2026)
+- **Сайт В ИНДЕКСЕ Google** — подтверждено 11.07, сниппет корректный.
+- **Google Search Console** подключена (аккаунт vnadich@gmail.com), домен подтверждён
+  TXT-записью, sitemap отправлен.
+- HTTPS live (Let's Encrypt через GitHub, enforced, автопродление).
+
 ## Архитектура (всё в одном `index.html`)
-- **Двуязычность** UK(default)/RU. Словари `I18N.uk` / `I18N.ru` в `<script>`.
-  Элементы с `data-i18n` (textContent) и `data-i18n-html` (innerHTML) переключает
-  функция `setLang(lang)`. Она же обновляет `href` всех `.btn-wa` — предзаполненный
-  текст WhatsApp на языке страницы (объект `waEnc` внутри `setLang`).
-- **Контент** — в теге `<script id="content-overrides" type="application/json">`.
-  JSON парсится в `OV`:
-  - `OV.portrait` — фото, **base64 data-URL** (одно, лёгкое);
-  - `OV.docs` — массив `{src, caption}`, `src` — **относительный путь** в `docs/`;
-  - `OV.gallery` — планируемый слот галереи остальных сертификатов (ещё не наполнен);
-  - `OV.video` — планируемый слот видео-визитки (секция скрыта, пока пусто).
-  Потребители: `applyPortrait()`, `renderDocs()` и т.д. в конце файла.
-- **Режим правок контента**: `?edit` в URL → правки в браузере → «Скачать» →
-  файл заменяет `index.html` → push.
+- **Двуязычность** UK(default)/RU. Словари `I18N.uk`/`I18N.ru`. `setLang(lang)` переключает
+  `data-i18n`/`data-i18n-html`, а также обновляет `href` кнопок `.btn-wa` (WhatsApp-prefill)
+  и `.js-tg` (Telegram-prefill) — предзаполненный текст по языку.
+- **Контент** — тег `<script id="content-overrides" type="application/json">` → объект `OV`:
+  - `OV.portrait` — фото **base64 data-URL** (одно, лёгкое);
+  - `OV.docs` — массив `{src, caption:{uk,ru}}`, `src` — путь в `docs/`;
+  - `OV.gallery` — **12 сертификатов** `{src, caption:{uk,ru}}` (наполнено);
+  - `OV.video` — слот видео-визитки (секция скрыта, пока пусто).
+  Потребители: `applyPortrait/renderDocs/renderGallery/applyVideo`. Подписи docs/gallery
+  билингвальны и перерисовываются в `setLang`.
+- **Фон**: слой `.bg-pattern` — бумажная текстура (десатур. fractalNoise, `position:absolute`
+  → скроллится вместе с контентом, `opacity:.4`, `mix-blend-mode:multiply`) + `body::after`
+  тонкое зерно поверх (4%). ⚠️ Прошли итерации олива→градиент→бумага; `olive-pattern.svg`
+  удалён — сейчас именно бумажная текстура.
+- **Режим правок контента**: `?edit` → правки в браузере → «Скачать» → push.
 
 ## Правила при правках
-- **НЕ ломать `content-overrides`**: при редактировании HTML менять только
-  содержимое этого тега; JSON держать валидным.
-- **Тексты — в ОБОИХ словарях** (`I18N.uk` и `I18N.ru`), иначе рассинхрон языков.
-- **Документы — файлами в `docs/`** (JPEG ≤1400px, ≤400KB), НЕ base64.
-  Base64 только у портрета. Резерв (не на сайте) — `docs/reserve/`.
+- **НЕ ломать `content-overrides`**: менять только содержимое тега; JSON держать валидным.
+- **Тексты — в ОБОИХ словарях** (`I18N.uk` и `I18N.ru`).
+- **Документы — файлами в `docs/`** (JPEG ≤1400px, галерея ≤1200px), НЕ base64. Base64 только
+  у портрета. Резерв (не на сайте) — `docs/reserve/`.
 - **Проверять JS**: `new Function` на содержимом исполняемых `<script>` (Node).
-- **После каждого push — проверка на живом домене** (https 200 + маркеры контента:
-  «гештальт-терапевтка», `data:image`, нужные `docs/…`).
-- Файл `CNAME` (violetta-nadych.com) не удалять — на нём висит домен и сертификат.
+- **После каждого push — проверка на живом домене** (https 200 + маркеры контента).
+- Файл `CNAME` не удалять — на нём висят домен и сертификат.
+
+## Что добавлено 10–11.07
+- Фоновая бумажная текстура (слой `.bg-pattern`).
+- Favicon-комплект «фиалка»: `favicon.svg` + `favicon-32.png` + `favicon-192.png`
+  + `apple-touch-icon.png` + legacy-тег `shortcut icon`.
+- Фото-секции (формат `.about-photo`, клик → лайтбокс): перед «Про мене»
+  (`docs/about-photo.jpg`) и перед «С чем ко мне приходять» (`docs/chat-photo.jpg`).
+- Портрет hero открывается в лайтбоксе (кроме `?edit`).
+- Instagram-ссылки (шапка + футер). Убран наклон/белые края портрета, оба фото одного
+  размера (`min(320px,78vw)`), убрано «третій медичний факультет» из «Про мене».
 
 ## Деплой
 ```
@@ -36,14 +52,11 @@ git add -A && git commit -m "..." && git push origin main   # Pages соберё
 ```
 Автор коммитов: Kvarcit-ticravK / 999kvarcit999@gmail.com.
 
-## Контакты на сайте (актуальные)
-- WhatsApp: `wa.me/35799856038` (+357 99 856 038), с предзаполненным `?text=` по языку.
-- Telegram: `t.me/+35799856038` (по номеру; TODO — заменить на username кипрского аккаунта).
+## Контакты на сайте (финальные)
+- Telegram: `t.me/violettanadych` (username, prefill по языку).
+- WhatsApp: `wa.me/35799856038` (+357 99 856 038, prefill по языку).
+- Instagram: `instagram.com/violettanadych` (**слитно!**), ссылка в шапке и футере.
 
-## Доделки
-- [x] Галерея сертификатов (`OV.gallery`, 12 шт., билингв. подписи) + текст мед-факультета + autocrop docs/ — задеплоено.
-- [ ] Видео-визитка: наполнить `OV.video` (секция-слот уже готова, скрыта до контента).
-- [x] Telegram — username `t.me/violettanadych` (с префиллом) — задеплоено.
-- [x] Instagram: instagram.com/violetta_nadych (профиль заведён 09.07; TODO — добавить ссылку на сайт в профиль). На сайте пока не указан.
-- [ ] Индексация: Google Search Console + Bing + Request Indexing.
-- [ ] Вычитка украинского текста (?edit).
+## Незакрытое
+- [ ] Видео-визитка: наполнить `OV.video` (секция-слот готова, скрыта до контента).
+- [ ] Вычитка текстов Виолеттой (`?edit`).
