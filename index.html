@@ -294,12 +294,11 @@ img{max-width:100%;display:block}
 }
 /* видео-визитка (слот) */
 .video-card{
-  position:relative;margin:0 auto;max-width:340px;aspect-ratio:9/16;
+  position:relative;margin:0 auto;max-width:400px;aspect-ratio:9/16;
   border-radius:20px;overflow:hidden;background:#000;
   box-shadow:0 22px 50px -18px rgba(53,41,31,.5);
 }
-@media(min-width:640px){.video-card{max-width:680px;aspect-ratio:16/9}}
-.video-card iframe,.video-card video{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.video-card iframe,.video-card video{position:absolute;inset:0;width:100%;height:100%;border:0}
 .video-note{text-align:center;color:var(--ink-soft);font-size:14px;margin-top:14px}
 
 /* ================= форматы ================= */
@@ -451,10 +450,10 @@ body.edit-mode .doc-del{display:block}
   </div>
 </section>
 
-<!-- ================= ВИДЕО-ВИЗИТКА (слот, скрыт до OV.video) ================= -->
+<!-- ================= ВИДЕО-ВИЗИТКА (показ по языку через videoIds) ================= -->
 <section class="wrap reveal" id="videoSec" hidden>
   <p class="kicker" data-i18n="videoKicker">Знайомство</p>
-  <h2 data-i18n="videoTitle">Кілька слів особисто</h2>
+  <h2 data-i18n="videoTitle">Відео-знайомство</h2>
   <div class="video-card" id="videoCard" style="margin-top:22px"></div>
   <p class="video-note" data-i18n="videoNote">Пів хвилини — щоб почути голос і зрозуміти, чи відгукується.</p>
 </section>
@@ -578,7 +577,7 @@ const I18N = {
     heroGeo:"Лімасол · очно та онлайн · українською і російською",
     heroCta:"Написати в Telegram",
     heroNote:"Відповідаю особисто, зазвичай протягом дня",
-    chatKicker:"Знайомі фрази?", videoKicker:"Знайомство", videoTitle:"Кілька слів особисто", videoNote:"Пів хвилини — щоб почути голос і зрозуміти, чи відгукується.",
+    chatKicker:"Знайомі фрази?", videoKicker:"Знайомство", videoTitle:"Відео-знайомство", videoNote:"Пів хвилини — щоб почути голос і зрозуміти, чи відгукується.",
     chatTitle:"З чим до мене приходять",
     q1:"«Дитина замкнулася після переїзду, цілими днями в телефоні»",
     q2:"«Кожна розмова з підлітком закінчується сваркою»",
@@ -615,7 +614,7 @@ const I18N = {
     heroGeo:"Лимасол · очно и онлайн · по-украински и по-русски",
     heroCta:"Написать в Telegram",
     heroNote:"Отвечаю лично, обычно в течение дня",
-    chatKicker:"Знакомые фразы?", videoKicker:"Знакомство", videoTitle:"Несколько слов лично", videoNote:"Полминуты — чтобы услышать голос и понять, откликается ли.",
+    chatKicker:"Знакомые фразы?", videoKicker:"Знакомство", videoTitle:"Видео-знакомство", videoNote:"Полминуты — чтобы услышать голос и понять, откликается ли.",
     chatTitle:"С чем ко мне приходят",
     q1:"«Ребёнок замкнулся после переезда, целыми днями в телефоне»",
     q2:"«Каждый разговор с подростком заканчивается ссорой»",
@@ -645,6 +644,21 @@ const I18N = {
   }
 };
 
+/* ВИДЕО-ВИЗИТКА по языку: YouTube ID для каждого языка.
+   Пустой id → секция видео скрыта целиком. */
+const videoIds = { uk: 'nHMJZbkKv6k', ru: 'j7FiLurHIro' };
+function applyVideoLang(lang){
+  const sec=document.getElementById('videoSec'), card=document.getElementById('videoCard');
+  if(!sec||!card) return;
+  const id=(videoIds[lang]||'').trim();
+  if(!id){ sec.hidden=true; card.innerHTML=''; card.removeAttribute('data-vid'); return; }
+  if(card.dataset.vid!==id){
+    card.innerHTML='<iframe src="https://www.youtube.com/embed/'+id+'" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>';
+    card.dataset.vid=id;
+  }
+  sec.hidden=false;
+}
+
 function setLang(lang){
   const dict=I18N[lang]; if(!dict) return;
   document.documentElement.lang=lang;
@@ -655,6 +669,7 @@ function setLang(lang){
   document.querySelectorAll('.btn-wa').forEach(a=>{a.href='https://wa.me/35799856038?text='+(waEnc[lang]||waEnc.uk);});
   const TG={uk:"https://t.me/violettanadych?text=%D0%92%D1%96%D1%82%D0%B0%D1%8E%2C%20%D0%92%D1%96%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%BE%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D0%B7%20%D0%B2%D0%B0%D1%88%D0%BE%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D1%83.",ru:"https://t.me/violettanadych?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D0%92%D0%B8%D0%BE%D0%BB%D0%B5%D1%82%D1%82%D0%B0%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D0%B2%D0%B0%D1%88%D0%B5%D0%B3%D0%BE%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0."};
   document.querySelectorAll('.js-tg').forEach(a=>a.href=TG[lang]||TG.uk);
+  applyVideoLang(lang);
   if(window.__ovReady){renderDocs();renderGallery();}
   try{localStorage.setItem('violla-lang',lang)}catch(e){}
 }
@@ -726,18 +741,6 @@ function renderGallery(){
     grid.appendChild(fig);
   });
 }
-/* видео-визитка: активировать секцию по OV.video */
-function applyVideo(){
-  if(!OV.video) return;
-  const sec=document.getElementById('videoSec'), card=document.getElementById('videoCard');
-  if(!sec||!card) return;
-  if(OV.video.youtube){
-    card.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+OV.video.youtube+'" title="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>';
-  } else if(OV.video.mp4){
-    card.innerHTML='<video src="'+OV.video.mp4+'" controls playsinline preload="metadata"></video>';
-  } else { return; }
-  sec.hidden=false;
-}
 applyPortrait();
 
 /* ================= РЕЖИМ РЕДАКТИРОВАНИЯ (?edit) ================= */
@@ -803,7 +806,6 @@ if(EDIT){
 if(OV.prices){document.querySelectorAll('.price').forEach((el,i)=>{if(OV.prices['p'+i])el.innerHTML=OV.prices['p'+i]})}
 renderDocs();
 renderGallery();
-applyVideo();
 window.__ovReady=true;
 /* портрет открывается в лайтбоксе по клику (кроме режима ?edit) */
 (function(){
