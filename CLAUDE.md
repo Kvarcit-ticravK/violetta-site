@@ -3,7 +3,8 @@
 Лендинг гештальт-терапевта Виолетты Надич. Живой сайт: https://violetta-nadych.com
 (GitHub Pages, репо Kvarcit-ticravK/violetta-site, деплой = push в `main`).
 
-## Статус (11.07.2026)
+## Статус (14.07.2026)
+- **Видео-визитка живая** — два ролика (UK/RU), секция видна на обоих языках.
 - **Сайт В ИНДЕКСЕ Google** — подтверждено 11.07, сниппет корректный.
 - **Google Search Console** подключена (аккаунт vnadich@gmail.com), домен подтверждён
   TXT-записью, sitemap отправлен.
@@ -16,10 +17,13 @@
 - **Контент** — тег `<script id="content-overrides" type="application/json">` → объект `OV`:
   - `OV.portrait` — фото **base64 data-URL** (одно, лёгкое);
   - `OV.docs` — массив `{src, caption:{uk,ru}}`, `src` — путь в `docs/`;
-  - `OV.gallery` — **12 сертификатов** `{src, caption:{uk,ru}}` (наполнено);
-  - `OV.video` — слот видео-визитки (секция скрыта, пока пусто).
-  Потребители: `applyPortrait/renderDocs/renderGallery/applyVideo`. Подписи docs/gallery
+  - `OV.gallery` — **12 сертификатов** `{src, caption:{uk,ru}}` (наполнено).
+  Потребители: `applyPortrait/renderDocs/renderGallery`. Подписи docs/gallery
   билингвальны и перерисовываются в `setLang`.
+- **Видео-визитка** — НЕ через `OV`, а отдельной константой `videoIds = {uk, ru}` (YouTube ID
+  на каждый язык). `applyVideoLang(lang)` вызывается из `setLang`: вставляет YouTube-iframe,
+  кэширует через `card.dataset.vid`; **пустой id → секция `#videoSec` скрыта целиком**.
+  Наполнено: uk `nHMJZbkKv6k`, ru `j7FiLurHIro`. Карточка вертикальная (9:16, max 400px).
 - **Фон**: слой `.bg-pattern` — бумажная текстура (десатур. fractalNoise, `position:absolute`
   → скроллится вместе с контентом, `opacity:.4`, `mix-blend-mode:multiply`) + `body::after`
   тонкое зерно поверх (4%). ⚠️ Прошли итерации олива→градиент→бумага; `olive-pattern.svg`
@@ -34,6 +38,10 @@
 - **Проверять JS**: `new Function` на содержимом исполняемых `<script>` (Node).
 - **После каждого push — проверка на живом домене** (https 200 + маркеры контента).
 - Файл `CNAME` не удалять — на нём висят домен и сертификат.
+
+## Что добавлено 14.07
+- Видео-визитка: механизм `OV.video`/`applyVideo` **заменён** на `videoIds`/`applyVideoLang`
+  (показ ролика по языку), вписаны оба YouTube-ID, карточка переведена в вертикальный 9:16.
 
 ## Что добавлено 10–11.07
 - Фоновая бумажная текстура (слой `.bg-pattern`).
@@ -58,5 +66,4 @@ git add -A && git commit -m "..." && git push origin main   # Pages соберё
 - Instagram: `instagram.com/violettanadych` (**слитно!**), ссылка в шапке и футере.
 
 ## Незакрытое
-- [ ] Видео-визитка: наполнить `OV.video` (секция-слот готова, скрыта до контента).
 - [ ] Вычитка текстов Виолеттой (`?edit`).
